@@ -13,11 +13,48 @@
     <title>Donate</title>
 </head>
 <style>
-
+    @media only screen and (max-width: 900px) {
+        .container {
+            border: 0;
+            padding: 0 !important;
+        }
+        .row {
+            justify-content: center !important;
+            width: 100% !important;
+        }
+        .tab-content img {
+            display: none;
+        }
+        .tablinks {
+            width: 60px !important;
+            height: 35px !important;
+        }
+        .tab {
+            font-size: 5px !important;
+        }
+        .tab button {
+            border: 0 !important;
+            font-size: 8px !important;
+        }
+        .donate {
+            border: 0 !important;
+            font-size: 8px !important;
+            width: 90px !important;
+            height: 40px !important;
+        }
+        .input-group {
+            width: 100% !important;
+            padding: 0 !important;
+        }
+        p {
+            font-size: 10px !important;
+        }
+    }
 </style>
 
 <body>
-    <div class="container d-flex justify-content-center mt-20">
+    <!-- <div class="container justify-content-center mt-20"> -->
+    <div class="row justify-content-md-center">
         <div class="col-xl-12 col-lg-12 col-md-6 col-sm-6 col-6 rep">
             <div class="header">
                 <center>
@@ -46,7 +83,8 @@
                     </li> -->
                 </ul>
 
-                <div class="tab-content" id="myTabContent3">
+                <div class="tab-content" id="myTabContent3" width="100%">
+
                     <div class="tab-pane fade show active" id="home-vertical" role="tabpanel" aria-labelledby="home-vertical-tab">
                         <center> <img src="imgs/mpesa1.png" width="150"><br>
 
@@ -91,7 +129,7 @@
                         <center>
 
 
-                            <button class="donate " id="£">DONATE NOW</button>
+                            <button class="donate" id="#">DONATE NOW</button>
                             <div class="cont">
                                 <p>DIAL: *483*57*53498#<br> PAYBILL: 891300<br> ACCOUNT: 53498</p>
                             </div>
@@ -313,6 +351,7 @@
                 </div>
             </div>
         </div>
+    </div>
     </div>
 
     <footer class="footer text-center ">
