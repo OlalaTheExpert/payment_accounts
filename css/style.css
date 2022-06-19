@@ -11,6 +11,13 @@ body {
 }
 
 
+/* --------modal--------- */
+
+.modal-header .close {
+    color: red !important;
+}
+
+
 /* Style the buttons inside the tab */
 
 .cont {
