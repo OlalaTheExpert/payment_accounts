@@ -5,7 +5,7 @@ use Carbon\Carbon;
 if(isset($_POST['stk'])){
 stkPush($_POST['amount']);
 $phone = '254'.(int)($_POST['phone']);
-$account = $_POST['account'];
+// $account = $_POST['account'];
 
 }
 function lipaNaMpesaPassword()
@@ -15,8 +15,8 @@ function lipaNaMpesaPassword()
     //passkey
    // $passKey ="146d7f37e3d970bb86c2a688ff88188cf18f8899fd6eec00d58edc933d99285f";
    // $businessShortCOde=7360076;
-    $passKey ="c9696991aea3a9776c276c8e8a4ad40c0a2e3427c2f64a811ced319ca07781dd";
-    $businessShortCOde =4075143;
+    $passKey ="c84a6380cde28066363a8a57da2168a1f3cd2ac2d7e4e34aa36a1e2fb6a21751";
+    $businessShortCOde =754298;
     //generate password
     $mpesaPassword = base64_encode($businessShortCOde.$passKey.$timestamp);
 
@@ -28,8 +28,8 @@ function lipaNaMpesaPassword()
    {
        // $consumer_key="V3iTCot3nLrlb2lRSPFsaQTwZBgijGqo";
        //$consumer_secret="9Y1LvjKuCeFCvKEy";
-       $consumer_key="BhzTERDBffApjKWXiMKCvgdNqHBDI1bu";
-       $consumer_secret="mn6B64XU271PYJ6X";
+       $consumer_key="yPLtyISLYWAB7cz0dNdDbn39k2A7zun9";
+       $consumer_secret="MkBLyM6vACqwymtL";
        $credentials = base64_encode($consumer_key.":".$consumer_secret);
        $url = "https://api.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials";
 
@@ -50,39 +50,30 @@ function lipaNaMpesaPassword()
 
    function stkPush($amount)
    {
-       //    $user = $request->user;
-       //    $amount = $request->amount;
-       //    $phone =  $request->phone;
-       //    $formatedPhone = substr($phone, 1);//726582228
-       //    $code = "254";
-       //    $phoneNumber = $code.$formatedPhone;//254726582228     
-      
-      // .$_POST['phone'] = (int).$_POST['phone'];
-    //$var = ltrim($var, '0');
-
+       
        $url = 'https://api.safaricom.co.ke/mpesa/stkpush/v1/processrequest';
        $curl_post_data = [
-            'BusinessShortCode' =>4075143,
+            'BusinessShortCode' =>754298,
             //'BusinessShortCode' =>7360076,
             'Password' => lipaNaMpesaPassword(),
             'Timestamp' => Carbon::rawParse('now')->format('YmdHms'),
             'TransactionType' => 'CustomerPayBillOnline',
             'Amount' => $amount,
             'PartyA' =>'254'.(int)($_POST['phone']),
-            'PartyB' => 4075143,
+            'PartyB' => 754298,
             //'PartyB' => 7360076,
             'PhoneNumber' => '254'.(int)($_POST['phone']),
-            'CallBackURL' => 'https://4267-102-222-146-194.in.ngrok.io/TCL/callback.php',
+            'CallBackURL' => 'localhost/treasureorg/mpesalipa/callback.php',
            //'CallBackURL' => 'http://nexpay.co.ke/mpesa/single.php',
-           //'ConfirmationURL'=>'https://nexpay.co.ke/mpesalipa/confirmation_url.php',
+          // 'ConfirmationURL'=>'https://nexpay.co.ke/mpesalipa/confirmation_url.php',
            
-            'AccountReference' => $_POST['account'],
+            'AccountReference' => "TREASURE FOUNDATION",
             
-            'TransactionDesc' => $_POST['descp'],
+            'TransactionDesc' => "Foundation Donation",
         ];
 
       $phonenumber='254'.(int)($_POST['phone']);
-      $account=$_POST['account'];
+      //$account=$_POST['account'];
        $data_string = json_encode($curl_post_data);
 
 
@@ -93,15 +84,16 @@ function lipaNaMpesaPassword()
        curl_setopt($curl, CURLOPT_POST, true);
        curl_setopt($curl, CURLOPT_POSTFIELDS, $data_string);
        $curl_response = curl_exec($curl);
-
+// echo "</br>";
+// echo $account;
       sleep(3); 
        
-      header("Location: responses.php");
+     //header("Location: success.php");
        //header("Location: loading.php?phone=$phonenumber&amount=$amount&account=$account");
 
-       //exit();
-    //print_r($curl_response);
+       print_r($curl_response);
       
+       exit();
 
 
 //echo $phonenumber;
