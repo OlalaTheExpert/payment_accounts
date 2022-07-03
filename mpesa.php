@@ -12,11 +12,9 @@ function lipaNaMpesaPassword()
 {
     //timestamp
     $timestamp = Carbon::rawParse('now')->format('YmdHms');
-    //passkey
-   // $passKey ="146d7f37e3d970bb86c2a688ff88188cf18f8899fd6eec00d58edc933d99285f";
-   // $businessShortCOde=7360076;
-    $passKey ="c84a6380cde28066363a8a57da2168a1f3cd2ac2d7e4e34aa36a1e2fb6a21751";
-    $businessShortCOde =754298;
+
+    $passKey ="***************************";
+    $businessShortCOde =******;
     //generate password
     $mpesaPassword = base64_encode($businessShortCOde.$passKey.$timestamp);
 
@@ -26,10 +24,9 @@ function lipaNaMpesaPassword()
 
    function newAccessToken()
    {
-       // $consumer_key="V3iTCot3nLrlb2lRSPFsaQTwZBgijGqo";
-       //$consumer_secret="9Y1LvjKuCeFCvKEy";
-       $consumer_key="yPLtyISLYWAB7cz0dNdDbn39k2A7zun9";
-       $consumer_secret="MkBLyM6vACqwymtL";
+      
+       $consumer_key="************************";
+       $consumer_secret="*******************";
        $credentials = base64_encode($consumer_key.":".$consumer_secret);
        $url = "https://api.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials";
 
@@ -54,22 +51,21 @@ function lipaNaMpesaPassword()
        $url = 'https://api.safaricom.co.ke/mpesa/stkpush/v1/processrequest';
        $curl_post_data = [
             'BusinessShortCode' =>754298,
-            //'BusinessShortCode' =>7360076,
+            
             'Password' => lipaNaMpesaPassword(),
             'Timestamp' => Carbon::rawParse('now')->format('YmdHms'),
             'TransactionType' => 'CustomerPayBillOnline',
             'Amount' => $amount,
             'PartyA' =>'254'.(int)($_POST['phone']),
             'PartyB' => 754298,
-            //'PartyB' => 7360076,
+            
             'PhoneNumber' => '254'.(int)($_POST['phone']),
             'CallBackURL' => 'localhost/treasureorg/mpesalipa/callback.php',
-           //'CallBackURL' => 'http://nexpay.co.ke/mpesa/single.php',
-          // 'ConfirmationURL'=>'https://nexpay.co.ke/mpesalipa/confirmation_url.php',
            
-            'AccountReference' => "TREASURE FOUNDATION",
+           
+            'AccountReference' => "*********",
             
-            'TransactionDesc' => "Foundation Donation",
+            'TransactionDesc' => "*********",
         ];
 
       $phonenumber='254'.(int)($_POST['phone']);
